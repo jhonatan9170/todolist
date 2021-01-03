@@ -1,18 +1,41 @@
 const express = require('express');
 const app = express();
 app.use(express.urlencoded({extended: false}));
+app.set("view engine","ejs");
 app.use(express.json());
 
 app.get("/",(req,res)=>{
  var today = new Date();
  var currentDay = today.getDay();
- if (currentDay===6||currentDay===0) {
-     
- } else {
-     
- }
-res.send("today is "+ today.getUTCMinutes());
+ var day ="";
+ switch (currentDay) {
+    case 0:
+    day="Sunday";
+    break;
+    case 1:
+    day="Monday";
+    break;
+    case 2:
+    day="Thursay";
+    break;
+    case 3:
+    day="Wednesday";
+    break;
+    case 4:
+    day="Jueves";
+    break;
+    case 5:
+    day="Friday";
+    break;
+    case 6:
+    day="Saturday";
+    break;
 
+    default:
+    break;
+ } 
+ 
+res.render("list",{kindOfDay : day});
 
 })
 
